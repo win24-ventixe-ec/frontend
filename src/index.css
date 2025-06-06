@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --primary-110: #C256C7;
+  --primary-100: #F26CF9;
+  --primary-90: #F589FA;
+  --primary-50: #FCD3FE;
+  --primary-40: #FCE2FE;
+  --primary-30: #FDEDFE;
+
+  --secondary-110: #1C2346;
+  --secondary-100: #37437D;
+  --secondary-90: #5562A2;
+  --secondary-70: #707DBF;
+  --secondary-60: #ABB4DD;
+  --secondary-50: #D3DAF9;
+
+  --yellow-100: #FFCA39;
+  --yellow-90: #FFEFC3;
+
+  --grey-10: #FFFFFF;
+  --grey-20: #F7F7F7;
+  --grey-30: #EDEDED;
+  --grey-40: #E0E0E1;
+  --grey-50: #C3C3C4;
+  --grey-60: #9F9FA1;
+  --grey-70: #777779;
+  --grey-80: #636365;
+  --grey-90: #434345;
+  --grey-100: #1E1E20;
+
+  --cool-grey-10: #EEEFFF;
+  --cool-grey-20: #E4E5F5;
+  --cool-grey-30: #DDDEED;
+  --cool-grey-40: #D1D2E0;
+  --cool-grey-50: #B0B1BD;
+  --cool-grey-60: #8F8F99;
+  --cool-grey-70: #72737A;
+  --cool-grey-80: #56565C;
+  --cool-grey-90: #39393D;
+  --cool-grey-100: #131314;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.active-nav-symbol {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 30px;
+  width: 4px;
+  background-color: var(--primary-90);
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-100%)translateY(-50%);
+  opacity: 0;
+
+  &.active {
+    transform: translateX(0)translateY(-50%);
+    opacity: 1;
+  }
+}
+
+.menu-item {
+  background-color: transparent;
+
+  &:hover {
+    background-color: rgba(255,255,255,0.4);
+  }
+}
