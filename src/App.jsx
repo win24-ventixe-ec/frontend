@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
-import { Typography } from '@mui/material';
 import MainLayout from './components/MainLayout';
 import Events from './pages/Events';
 import Home from './pages/Home';
 import Authentication from './pages/Authentication';
 import Event from './pages/Event';
+import Bookings from './pages/Bookings';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path="/authentication" element={<Authentication />} />
         <Route path="/events" element={<Events />} />
         <Route path="/events/:eventId" element={<Event />} />
-        <Route path="/events/:eventId/attendees" element={<h1>Attendees</h1>} />
+        <Route path="/bookings" element={<Bookings />} />
       </Route>
     </Routes>
   );

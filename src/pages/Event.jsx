@@ -1,5 +1,5 @@
 import { Image } from '@mui/icons-material';
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Button, Divider, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -246,6 +246,44 @@ const Event = () => {
           {eventData.description}
         </Typography>
       </Box>
+      <Button
+        variant="contained"
+        sx={{
+          width: '100%',
+          height: '44px',
+          marginTop: '16px',
+          backgroundColor: 'var(--primary-100)',
+          color: 'var(--secondary-10)',
+          fontSize: '16px',
+          fontWeight: 500,
+          borderRadius: '8px',
+          '&:hover': {
+            backgroundColor: 'var(--primary-90)',
+          },
+        }}
+      >
+        Book Now
+      </Button>
+
+      <Button
+        variant="outlined"
+        sx={{
+          width: '100%',
+          height: '44px',
+          marginTop: '8px',
+          borderColor: 'var(--secondary-10)',
+          color: 'var(--secondary-10)',
+          fontSize: '16px',
+          fontWeight: 500,
+          borderRadius: '8px',
+          '&:hover': {
+            backgroundColor: 'var(--secondary-20)',
+            borderColor: 'var(--secondary-20)',
+          },
+        }}
+      >
+        Cancel Booking
+      </Button>
     </Box>
   );
 };
