@@ -7,10 +7,9 @@ const Event = () => {
   const location = useLocation();
   const [eventData, setEventData] = useState({
     eventId: null,
-    title: 'Echo Beats Festival',
+    title: 'Loading...',
     dateAndTime: 'May 20, 2029 - 9:00 AM',
-    description:
-      'The Echo Beats Festival brings together a stellar lineup of artists across EDM, pop, and hip-hop genres. Prepare to experience a night of electrifying music, vibrant light shows, and unforgettable performances under the stars. Explore food trucks, art installations, and VIP lounges for an elevated experience.',
+    description: '',
     location: 'Sunset Park, Los Angeles, CA',
     image: '',
     tickets: 5000,
@@ -18,16 +17,47 @@ const Event = () => {
     organizer: 'Echo Events',
     price: '$60',
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const pathParts = location.pathname.split('/');
     const id = pathParts[pathParts.length - 1];
-    setEventData((prevData) => ({
-      ...prevData,
-      eventId: id,
-    }));
+
+    const fetchEventData = async (eventId) => {
+      try {
+        const response = await fetch(
+          `https://vxe-eventservice-b2dfaud8evbxb5h0.swedencentral-01.azurewebsites.net/api/events/${eventId}`,
+        );
+        setLoading(false);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        if (data && data.result) {
+          const event = data.result;
+          setEventData((prevData) => ({
+            ...prevData,
+            title: event.title || prevData.title,
+            dateAndTime: event.dateAndTime || prevData.dateAndTime,
+            description: event.description || prevData.description,
+            location: event.location || prevData.location,
+            image: event.image || prevData.image,
+            tickets: event.tickets || prevData.tickets,
+            attendees: event.attendees || prevData.attendees,
+            organizer: event.organizer || prevData.organizer,
+            price: event.price || prevData.price,
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching event data:', error);
+      }
+    };
+
+    fetchEventData(id);
   }, [location.pathname]);
-  return (
+  return loading ? (
+    <div className="loader"></div>
+  ) : (
     <Box
       sx={{
         display: 'flex',
@@ -248,6 +278,7 @@ const Event = () => {
       </Box>
       <Button
         variant="contained"
+        disabled={loading}
         sx={{
           width: '100%',
           height: '44px',
@@ -267,6 +298,7 @@ const Event = () => {
 
       <Button
         variant="outlined"
+        disabled={loading}
         sx={{
           width: '100%',
           height: '44px',
